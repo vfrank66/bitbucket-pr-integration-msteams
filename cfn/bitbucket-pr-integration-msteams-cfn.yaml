@@ -1,0 +1,177 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+
+Description: An AWS Serverless Application for receiving bitbucket notifications and forwarding to MS Teams.
+
+Parameters:
+  Environment:
+    Type: String  
+  CertificateArn:
+    Type: String
+    Description: SSL Certificate Arn for the Custom Domain Name
+  DomainName:
+    Type: String
+    Description: The Fully Qualified Domain Name of the API
+  ProjectName:
+    Type: String
+    Description: Name of this Lambda
+    Default: "bitbucket-pr-integration-msteams"
+  AlarnTargetArn:
+    Type: String
+    Description: The error Alarm target arn used to trigger on-page calls
+    Default: ""
+
+Conditions:
+  IsAlarmTarget: !Not [!Equals [!Ref "AlarnTargetArn", ""]]
+
+Resources:
+  LambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: 'Allow'
+            Principal:
+              Service:
+                - 'lambda.amazonaws.com'
+            Action:
+              - 'sts:AssumeRole'
+      Path: '/'
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+        - arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs
+
+  # API Resources
+  ApiGatewayLogsGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "${ProjectName}-gateway-logs-${Environment}"
+      RetentionInDays: 180
+
+  Api:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: !Sub BitbucketMSTeamsIntegration-${Environment}
+      StageName: !Ref Environment
+      AccessLogSetting:
+        DestinationArn: !GetAtt ApiGatewayLogsGroup.Arn
+        Format: $context.identity.sourceIp [$context.requestTime] $context.httpMethod $context.resourcePath $context.protocol $context.integrationStatus $context.integrationLatency $context.status $context.responseLatency $context.responseLength $context.requestId
+      CacheClusterEnabled: false
+      CacheClusterSize: '1.6'
+      Cors:
+        AllowMethods: "'*'"
+        AllowHeaders: "'*'"
+        AllowOrigin: "'*'"
+      OpenApiVersion: "3.0.0"
+      DefinitionBody:
+        Fn::Transform:
+          Name: AWS::Include
+          Parameters:
+            Location: swagger.yaml
+      MinimumCompressionSize: 2048
+      TracingEnabled: true
+      Variables:
+        LambdaFunctionName: !Ref Lambda
+
+  Lambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${ProjectName}-${Environment}"
+      Handler: dist/lambda-entry-point.handler
+      Role: !GetAtt LambdaRole.Arn
+      Timeout: 30
+      MemorySize: 1024
+      CodeUri: bitbucket-pr-integration-msteams.zip
+      Runtime: nodejs14.x
+      Environment:
+        Variables:
+          NO_COLOR: "disable nestjs color logging"
+          ENVIRONMENT: !Ref Environment
+
+  ApiGatewayPermission:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !Ref Lambda
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${Api}/*"
+
+  ApiResourceDomainName:
+    Type: AWS::ApiGateway::DomainName
+    DependsOn: Lambda
+    Properties:
+      CertificateArn: !Ref CertificateArn
+      DomainName: !Ref DomainName
+      SecurityPolicy: 'TLS_1_2'
+
+  ResourceBasePath:
+    Type: AWS::ApiGateway::BasePathMapping
+    DependsOn: ApiResourceDomainName
+    Properties:
+      DomainName: !Ref DomainName
+      RestApiId: !Ref Api
+      Stage: !Ref Api.Stage
+
+  # Metrics Resources
+  LogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties: 
+      LogGroupName: !Sub "/aws/lambda/${ProjectName}-${Environment}"
+  
+  MetricFilter: 
+    Condition: IsAlarmTarget
+    Type: AWS::Logs::MetricFilter
+    Properties: 
+      LogGroupName: !Ref LogGroup
+      FilterPattern: !Sub '"Lambda ERROR ${ProjectName}"'
+      MetricTransformations: 
+        - 
+          MetricValue: "1"
+          MetricNamespace: "Lambda/ExecutionFailures"
+          MetricName: !Sub '${ProjectName}-failures-${Environment}'
+
+  CloudWatchAlarm:
+    Condition: IsAlarmTarget
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      EvaluationPeriods: 1
+      Statistic: Sum
+      Threshold: 0
+      Period: 300
+      AlarmActions:
+        - !Ref AlarnTargetArn
+      AlarmName: !Sub '${ProjectName}-${Environment}'
+      AlarmDescription: !Sub '${ProjectName} alarm for Lambda execution failures on ${Environment}.'
+      Namespace: Lambda/ExecutionFailures
+      ComparisonOperator: GreaterThanThreshold
+      MetricName: !Sub '${ProjectName}-failures-${Environment}'
+
+  OutOfMemoryFilter: 
+    Condition: IsAlarmTarget
+    Type: AWS::Logs::MetricFilter
+    Properties: 
+      LogGroupName: !Ref LogGroup
+      FilterPattern: 'Runtime exited with error'
+      MetricTransformations: 
+        - 
+          MetricValue: "1"
+          MetricNamespace: "Lambda/ExecutionFailures"
+          MetricName: !Sub '${ProjectName}-out-of-memory-${Environment}'
+
+  OutOfMemoryAlarm:
+    Condition: IsAlarmTarget
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      EvaluationPeriods: 1
+      Statistic: Sum
+      Threshold: 0
+      Period: 300
+      AlarmActions:
+        - !Ref AlarnTargetArn
+      AlarmName: !Sub '${ProjectName}-out-of-memory-${Environment}'
+      AlarmDescription: !Sub '${ProjectName} alarm for out of memory failure on ${Environment}.'
+      Namespace: Lambda/ExecutionFailures
+      ComparisonOperator: GreaterThanThreshold
+      MetricName: !Sub '${ProjectName}-out-of-memory-${Environment}'

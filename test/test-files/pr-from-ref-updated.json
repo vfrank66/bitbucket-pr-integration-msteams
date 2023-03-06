@@ -1,0 +1,156 @@
+{
+    "eventKey": "pr:from_ref_updated",
+    "date": "2020-02-20T14:49:41+1100",
+    "actor": {
+      "name": "admin",
+      "emailAddress": "admin@example.com",
+      "id": 1,
+      "displayName": "Administrator",
+      "active": true,
+      "slug": "admin",
+      "type": "NORMAL",
+      "links": {
+        "self": [
+          {
+            "href": "http://localhost:7990/bitbucket/users/admin"
+          }
+        ]
+      }
+    },
+    "pullRequest": {
+      "id": 2,
+      "version": 16,
+      "title": "Webhook",
+      "state": "OPEN",
+      "open": true,
+      "closed": false,
+      "createdDate": 1582065825700,
+      "updatedDate": 1582170581372,
+      "fromRef": {
+        "id": "refs/heads/pr-webhook",
+        "displayId": "pr-webhook",
+        "latestCommit": "aab847db240ccae221f8036605b00f777eba95d2",
+        "repository": {
+          "slug": "dvcs",
+          "id": 33,
+          "name": "dvcs",
+          "hierarchyId": "09992c6ad9e001f01120",
+          "scmId": "git",
+          "state": "AVAILABLE",
+          "statusMessage": "Available",
+          "forkable": true,
+          "project": {
+            "key": "GIT",
+            "id": 62,
+            "name": "Bitbucket",
+            "public": false,
+            "type": "NORMAL",
+            "links": {
+              "self": [
+                {
+                  "href": "http://localhost:7990/bitbucket/projects/GIT"
+                }
+              ]
+            }
+          },
+          "public": false,
+          "links": {
+            "clone": [
+              {
+                "href": "ssh://git@localhost:7999/git/dvcs.git",
+                "name": "ssh"
+              },
+              {
+                "href": "http://localhost:7990/bitbucket/scm/git/dvcs.git",
+                "name": "http"
+              }
+            ],
+            "self": [
+              {
+                "href": "http://localhost:7990/bitbucket/projects/GIT/repos/dvcs/browse"
+              }
+            ]
+          }
+        }
+      },
+      "toRef": {
+        "id": "refs/heads/master",
+        "displayId": "master",
+        "latestCommit": "86448735f9dee9e1fb3d3e5cd9fbc8eb9d8400f4",
+        "repository": {
+          "slug": "dvcs",
+          "id": 33,
+          "name": "dvcs",
+          "hierarchyId": "09992c6ad9e001f01120",
+          "scmId": "git",
+          "state": "AVAILABLE",
+          "statusMessage": "Available",
+          "forkable": true,
+          "project": {
+            "key": "GIT",
+            "id": 62,
+            "name": "Bitbucket",
+            "public": false,
+            "type": "NORMAL",
+            "links": {
+              "self": [
+                {
+                  "href": "http://localhost:7990/bitbucket/projects/GIT"
+                }
+              ]
+            }
+          },
+          "public": false,
+          "links": {
+            "clone": [
+              {
+                "href": "ssh://git@localhost:7999/git/dvcs.git",
+                "name": "ssh"
+              },
+              {
+                "href": "http://localhost:7990/bitbucket/scm/git/dvcs.git",
+                "name": "http"
+              }
+            ],
+            "self": [
+              {
+                "href": "http://localhost:7990/bitbucket/projects/GIT/repos/dvcs/browse"
+              }
+            ]
+          }
+        }
+      },
+      "locked": false,
+      "author": {
+        "user": {
+          "name": "admin",
+          "emailAddress": "admin@example.com",
+          "id": 1,
+          "displayName": "Administrator",
+          "active": true,
+          "slug": "admin",
+          "type": "NORMAL",
+          "links": {
+            "self": [
+              {
+                "href": "http://localhost:7990/bitbucket/users/admin"
+              }
+            ]
+          }
+        },
+        "role": "AUTHOR",
+        "approved": false,
+        "status": "UNAPPROVED"
+      },
+      "reviewers": [],
+      "participants": [],
+      "links": {
+        "self": [
+          {
+            "href": "http://localhost:7990/bitbucket/projects/GIT/repos/dvcs/pull-requests/2"
+          }
+        ]
+      }
+    },
+    "previousFromHash": "99f3ea32043ba3ecaa28de6046b420de70257d80"
+  }

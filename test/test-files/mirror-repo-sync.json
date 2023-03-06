@@ -1,0 +1,59 @@
+{
+    "eventKey": "mirror:repo_synchronized",
+    "date": "2019-07-11T16:18:20+1000",
+    "mirrorServer": {
+      "id": "B88H-IR7J-5PV0-VCNS",
+      "name": "Mirror Name"
+    },
+    "syncType": "INCREMENTAL",
+    "refLimitExceeded": false,
+    "repository": {
+      "slug": "testrepo",
+      "id": 1,
+      "name": "testrepo",
+      "scmId": "git",
+      "state": "AVAILABLE",
+      "statusMessage": "Available",
+      "forkable": true,
+      "project": {
+        "key": "TP",
+        "id": 1,
+        "name": "testp",
+        "public": false,
+        "type": "NORMAL"
+      },
+      "public": false,
+  "links": {
+  "clone": [
+  {
+  "href": "ssh://git@example.com:7997/project/repository.git",
+  "name": "ssh"
+  },
+  {
+  "href": "https://example.com/scm/project/repository.git",
+  "name": "http"
+  }
+  ],
+  "self": [
+  {
+  "href": "https://example.com/projects/project/repos/repo/browse"
+  }
+  ]
+  }
+  
+  
+    },
+    "changes": [
+      {
+        "ref": {
+          "id": "refs/heads/master",
+          "displayId": "master",
+          "type": "BRANCH"
+        },
+        "refId": "refs/heads/master",
+        "fromHash": "b5616b9",
+        "toHash": "d055eca",
+        "type": "UPDATE"
+      }
+    ]
+  }

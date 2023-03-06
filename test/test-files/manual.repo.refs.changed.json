@@ -1,0 +1,76 @@
+{
+    "eventKey": "repo:refs_changed",
+    "date": "2022-08-05T20:36:19-0500",
+    "actor": {
+        "name": "testuser",
+        "emailAddress": "test!@test.com",
+        "id": 6315,
+        "displayName": "Test User",
+        "active": true,
+        "slug": "testuser",
+        "type": "NORMAL",
+        "links": {
+            "self": [
+                {
+                    "href": "https://company.bitbucket.domain.name/users/testuser"
+                }
+            ]
+        }
+    },
+    "repository": {
+        "slug": "test-repository-name",
+        "id": 4198,
+        "name": "test-repository-name",
+        "hierarchyId": "1eb1f29b10e38ea45d26",
+        "scmId": "git",
+        "state": "AVAILABLE",
+        "statusMessage": "Available",
+        "forkable": true,
+        "project": {
+            "key": "TEST",
+            "id": 891,
+            "name": "Test Project Name",
+            "description": "Test",
+            "public": false,
+            "type": "NORMAL",
+            "links": {
+                "self": [
+                    {
+                        "href": "https://company.bitbucket.domain.name/projects/TEST"
+                    }
+                ]
+            }
+        },
+        "public": false,
+        "links": {
+            "clone": [
+                {
+                    "href": "ssh://git@company.bitbucket.domain.name/ap/test-repository-name.git",
+                    "name": "ssh"
+                },
+                {
+                    "href": "https://company.bitbucket.domain.name/scm/test/test-repository-name.git",
+                    "name": "http"
+                }
+            ],
+            "self": [
+                {
+                    "href": "https://company.bitbucket.domain.name/projects/TEST/repos/test-repository-name/browse"
+                }
+            ]
+        }
+    },
+    "changes": [
+        {
+            "ref": {
+                "id": "refs/heads/TEST-PULL-request-branch-name",
+                "displayId": "TEST-PULL-request-branch-name",
+                "type": "BRANCH"
+            },
+            "refId": "refs/heads/TEST-PULL-request-branch-name",
+            "fromHash": "14adfa6ace2efecc116ee5731847705a5a925e23",
+            "toHash": "a510c3abcc49a5cb0ae27547d1ff674be59c0853",
+            "type": "UPDATE"
+        }
+    ]
+}

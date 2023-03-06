@@ -1,0 +1,286 @@
+{
+    "eventKey": "pr:opened",
+    "date": "2022-08-05T11:42:43-0500",
+    "actor": {
+        "name": "testuser",
+        "emailAddress": "test!@test.com",
+        "id": 6315,
+        "displayName": "Test User",
+        "active": true,
+        "slug": "testuser",
+        "type": "NORMAL",
+        "links": {
+            "self": [
+                {
+                    "href": "https://company.bitbucket.domain.name/users/testuser"
+                }
+            ]
+        }
+    },
+    "pullRequest": {
+        "id": 6,
+        "version": 4,
+        "title": "Change pagerduty email arn to servicenow email arn",
+        "state": "OPEN",
+        "open": true,
+        "closed": false,
+        "createdDate": 1659716979760,
+        "updatedDate": 1659717763459,
+        "fromRef": {
+            "id": "refs/heads/TEST-PULL-request-branch-name",
+            "displayId": "TEST-PULL-request-branch-name",
+            "latestCommit": "14adfa6ace2efecc116ee5731847705a5a925e23",
+            "type": "BRANCH",
+            "repository": {
+                "slug": "test-repository-name",
+                "id": 4198,
+                "name": "test-repository-name",
+                "hierarchyId": "1eb1f29b10e38ea45d26",
+                "scmId": "git",
+                "state": "AVAILABLE",
+                "statusMessage": "Available",
+                "forkable": true,
+                "project": {
+                    "key": "TEST",
+                    "id": 891,
+                    "name": "Test Project Name",
+                    "description": "Test",
+                    "public": false,
+                    "type": "NORMAL",
+                    "links": {
+                        "self": [
+                            {
+                                "href": "https://company.bitbucket.domain.name/projects/TEST"
+                            }
+                        ]
+                    }
+                },
+                "public": false,
+                "links": {
+                    "clone": [
+                        {
+                            "href": "ssh://git@company.bitbucket.domain.name/ap/test-repository-name.git",
+                            "name": "ssh"
+                        },
+                        {
+                            "href": "https://company.bitbucket.domain.name/scm/test/test-repository-name.git",
+                            "name": "http"
+                        }
+                    ],
+                    "self": [
+                        {
+                            "href": "https://company.bitbucket.domain.name/projects/TEST/repos/test-repository-name/browse"
+                        }
+                    ]
+                }
+            }
+        },
+        "toRef": {
+            "id": "refs/heads/main",
+            "displayId": "main",
+            "latestCommit": "7bec9b2831b83668a220577ed8a2ce8cb324de63",
+            "type": "BRANCH",
+            "repository": {
+                "slug": "test-repository-name",
+                "id": 4198,
+                "name": "test-repository-name",
+                "hierarchyId": "1eb1f29b10e38ea45d26",
+                "scmId": "git",
+                "state": "AVAILABLE",
+                "statusMessage": "Available",
+                "forkable": true,
+                "project": {
+                    "key": "TEST",
+                    "id": 891,
+                    "name": "Test Project Name",
+                    "description": "Test",
+                    "public": false,
+                    "type": "NORMAL",
+                    "links": {
+                        "self": [
+                            {
+                                "href": "https://company.bitbucket.domain.name/projects/TEST"
+                            }
+                        ]
+                    }
+                },
+                "public": false,
+                "links": {
+                    "clone": [
+                        {
+                            "href": "ssh://git@company.bitbucket.domain.name/ap/test-repository-name.git",
+                            "name": "ssh"
+                        },
+                        {
+                            "href": "https://company.bitbucket.domain.name/scm/test/test-repository-name.git",
+                            "name": "http"
+                        }
+                    ],
+                    "self": [
+                        {
+                            "href": "https://company.bitbucket.domain.name/projects/TEST/repos/test-repository-name/browse"
+                        }
+                    ]
+                }
+            }
+        },
+        "locked": false,
+        "author": {
+            "user": {
+                "name": "testuser",
+                "emailAddress": "test!@test.com",
+                "id": 6315,
+                "displayName": "Test User",
+                "active": true,
+                "slug": "testuser",
+                "type": "NORMAL",
+                "links": {
+                    "self": [
+                        {
+                            "href": "https://company.bitbucket.domain.name/users/testuser"
+                        }
+                    ]
+                }
+            },
+            "role": "AUTHOR",
+            "approved": false,
+            "status": "UNAPPROVED"
+        },
+        "reviewers": [
+            {
+                "user": {
+                    "name": "testUser",
+                    "emailAddress": "test@test.com",
+                    "id": 11240,
+                    "displayName": "Test User",
+                    "active": true,
+                    "slug": "testUser",
+                    "type": "NORMAL",
+                    "links": {
+                        "self": [
+                            {
+                                "href": "https://company.bitbucket.domain.name/users/testUser"
+                            }
+                        ]
+                    }
+                },
+                "role": "REVIEWER",
+                "approved": false,
+                "status": "UNAPPROVED"
+            },
+            {
+                "user": {
+                    "name": "testUser",
+                    "emailAddress": "test@test.com",
+                    "id": 12309,
+                    "displayName": "Test User",
+                    "active": true,
+                    "slug": "testUser",
+                    "type": "NORMAL",
+                    "links": {
+                        "self": [
+                            {
+                                "href": "https://company.bitbucket.domain.name/users/testUser"
+                            }
+                        ]
+                    }
+                },
+                "role": "REVIEWER",
+                "approved": false,
+                "status": "UNAPPROVED"
+            },
+            {
+                "user": {
+                    "name": "testuser",
+                    "emailAddress": "test@test.com",
+                    "id": 7000,
+                    "displayName": "Test User",
+                    "active": true,
+                    "slug": "testuser",
+                    "type": "NORMAL",
+                    "links": {
+                        "self": [
+                            {
+                                "href": "https://company.bitbucket.domain.name/users/testuser"
+                            }
+                        ]
+                    }
+                },
+                "role": "REVIEWER",
+                "approved": false,
+                "status": "UNAPPROVED"
+            },
+            {
+                "user": {
+                    "name": "testUser",
+                    "emailAddress": "test@test.com",
+                    "id": 252,
+                    "displayName": "Test User",
+                    "active": true,
+                    "slug": "testUser",
+                    "type": "NORMAL",
+                    "links": {
+                        "self": [
+                            {
+                                "href": "https://company.bitbucket.domain.name/users/testUser"
+                            }
+                        ]
+                    }
+                },
+                "role": "REVIEWER",
+                "approved": false,
+                "status": "UNAPPROVED"
+            },
+            {
+                "user": {
+                    "name": "testUser",
+                    "emailAddress": "test@test.com",
+                    "id": 3868,
+                    "displayName": "Test User",
+                    "active": true,
+                    "slug": "testUser",
+                    "type": "NORMAL",
+                    "links": {
+                        "self": [
+                            {
+                                "href": "https://company.bitbucket.domain.name/users/testUser"
+                            }
+                        ]
+                    }
+                },
+                "role": "REVIEWER",
+                "approved": false,
+                "status": "UNAPPROVED"
+            },
+            {
+                "user": {
+                    "name": "testuser",
+                    "emailAddress": "test@test.com",
+                    "id": 3937,
+                    "displayName": "Test User",
+                    "active": true,
+                    "slug": "testuser",
+                    "type": "NORMAL",
+                    "links": {
+                        "self": [
+                            {
+                                "href": "https://company.bitbucket.domain.name/users/testuser"
+                            }
+                        ]
+                    }
+                },
+                "role": "REVIEWER",
+                "approved": false,
+                "status": "UNAPPROVED"
+            }
+        ],
+        "participants": [],
+        "links": {
+            "self": [
+                {
+                    "href": "https://company.bitbucket.domain.name/projects/TEST/repos/test-repository-name/pull-requests/6"
+                }
+            ]
+        }
+    }
+}

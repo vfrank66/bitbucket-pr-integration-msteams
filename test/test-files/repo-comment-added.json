@@ -1,0 +1,60 @@
+{  
+  "eventKey":"repo:comment:added",
+  "date":"2017-09-19T09:53:06+1000",
+  "actor":{  
+    "name":"admin",
+    "emailAddress":"admin@example.com",
+    "id":1,
+    "displayName":"Administrator",
+    "active":true,
+    "slug":"admin",
+    "type":"NORMAL"
+  },
+  "comment":{  
+    "properties":{  
+      "repositoryId":84
+    },
+    "id":42,
+    "version":0,
+    "text":"This is a great line of code!",
+    "author":{  
+      "name":"admin",
+      "emailAddress":"admin@example.com",
+      "id":1,
+      "displayName":"Administrator",
+      "active":true,
+      "slug":"admin",
+      "type":"NORMAL"
+    },
+    "createdDate":1505778786337,
+    "updatedDate":1505778786337,
+    "comments":[  
+
+    ],
+    "tasks":[  
+
+    ],
+    "permittedOperations":{  
+      "editable":true,
+      "deletable":true
+    }
+  },
+  "repository":{  
+    "slug":"repository",
+    "id":84,
+    "name":"repository",
+    "scmId":"git",
+    "state":"AVAILABLE",
+    "statusMessage":"Available",
+    "forkable":true,
+    "project":{  
+      "key":"PROJ",
+      "id":84,
+      "name":"project",
+      "public":false,
+      "type":"NORMAL"
+    },
+    "public":false
+  },
+  "commit":"178864a7d521b6f5e720b386b2c2b0ef8563e0dc"
+}

@@ -1,0 +1,82 @@
+openapi: 3.0.0
+info:
+  title: BitbucketMsteamsIntegration
+  description: ""
+  version: 1.0.0
+  contact: {}
+x-amazon-apigateway-policy:
+  Version: '2012-10-17'
+  Statement:
+    - Effect: Allow
+      Principal: '*'
+      Action: execute-api:Invoke
+      Resource: '*'
+x-amazon-apigateway-gateway-responses:
+  DEFAULT_4XX:
+    responseParameters:
+      gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
+    responseTemplates:
+      application/json: "{\"message\":$context.error.messageString}"
+  DEFAULT_5XX:
+    responseParameters:
+      gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
+    responseTemplates:
+      application/json: "{\"message\":$context.error.messageString}"
+
+paths:
+  /:
+    post:
+      operationId: sendWebhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WebhookEventData"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WebhookEventData"
+        400:
+          $ref: '#/components/responses/invalid'
+        401:
+          $ref: '#/components/responses/unauthorized'
+        403:
+          $ref: '#/components/responses/forbidden'
+        404:
+          $ref: '#/components/responses/notFound'
+        405:
+          $ref: '#/components/responses/methodNotAllowed'
+      tags:
+        - importer
+      x-amazon-apigateway-integration:
+        type: AWS_PROXY
+        httpMethod: POST
+        uri:
+          Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${Lambda}/invocations
+
+tags: []
+servers: []
+components:
+  responses:
+    noContent:
+      description: Ok
+    badRequest:
+      description: Bad Request
+    invalid:
+      description: Invalid
+    unauthorized:
+      description: Unauthorized
+    forbidden:
+      description: Forbidden
+    notFound:
+      description: Not Found
+    methodNotAllowed:
+      description: Method Not Allowed
+  schemas:
+    WebhookEventData:
+      type: object
+      additionalProperties: {}
